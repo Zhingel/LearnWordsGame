@@ -10,8 +10,8 @@ import SwiftUI
 struct NewCard : View {
     @EnvironmentObject var viewModel: ViewModel
     @Binding var isNewCard: Bool
-  //  @State var card: Card
- // ?   @Binding var isChanged: Bool
+    @State var card: Card
+    @Binding var isChanged: Bool
     @State var newWord: String = ""
     @State var newTranslatedWord: String = ""
     var body: some View {
@@ -25,8 +25,7 @@ struct NewCard : View {
                     .font(.title)
                     .padding(.vertical, 30)
                 ZStack {
-             //       TextField(isNewCard ? "на русском" : card.word , text: $newWord)
-                    TextField("на русском", text: $newWord)
+                    TextField("на русском" , text: isNewCard ? $newWord : $card.word)
                         .padding(.horizontal)
                     RoundedRectangle(cornerRadius: 5)
                         .stroke(lineWidth: 1)
@@ -34,7 +33,7 @@ struct NewCard : View {
                 }
                 .frame(width: 200, height: 40, alignment: .center)
                 ZStack {
-                    TextField("на английском", text: $newTranslatedWord)
+                    TextField("на английском", text: isNewCard ? $newTranslatedWord : $card.translatedWord)
                         .padding(.horizontal)
                     RoundedRectangle(cornerRadius: 5)
                         .stroke(lineWidth: 1)
@@ -45,6 +44,8 @@ struct NewCard : View {
                     if isNewCard {
                         viewModel.addCard(word: newWord, translatedWord: newTranslatedWord)
                         isNewCard.toggle()
+                    } else {
+                        isChanged.toggle()
                     }
                 }
                 Spacer()
