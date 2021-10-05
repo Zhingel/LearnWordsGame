@@ -17,6 +17,7 @@
 		EE6F6748270C5A6F00F02BE0 /* NewCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6F6747270C5A6F00F02BE0 /* NewCardView.swift */; };
 		EE6F674A270C5AD700F02BE0 /* PlayCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6F6749270C5AD700F02BE0 /* PlayCardView.swift */; };
 		EE6F674F270C6A7C00F02BE0 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6F674E270C6A7C00F02BE0 /* CardView.swift */; };
+		EE6F6751270C9B4300F02BE0 /* GameCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE6F6750270C9B4300F02BE0 /* GameCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		EE6F6747270C5A6F00F02BE0 /* NewCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewCardView.swift; sourceTree = "<group>"; };
 		EE6F6749270C5AD700F02BE0 /* PlayCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayCardView.swift; sourceTree = "<group>"; };
 		EE6F674E270C6A7C00F02BE0 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		EE6F6750270C9B4300F02BE0 /* GameCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 				EE6F6749270C5AD700F02BE0 /* PlayCardView.swift */,
 				EE6F6745270C59FE00F02BE0 /* AllCardCollection.swift */,
 				EE6F674E270C6A7C00F02BE0 /* CardView.swift */,
+				EE6F6750270C9B4300F02BE0 /* GameCard.swift */,
 				EE6F6747270C5A6F00F02BE0 /* NewCardView.swift */,
 			);
 			path = Views;
@@ -164,6 +167,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EE6F6742270C423000F02BE0 /* Model.swift in Sources */,
+				EE6F6751270C9B4300F02BE0 /* GameCard.swift in Sources */,
 				EE6F6748270C5A6F00F02BE0 /* NewCardView.swift in Sources */,
 				EE6F6746270C59FE00F02BE0 /* AllCardCollection.swift in Sources */,
 				EE6F6734270C41CF00F02BE0 /* ContentView.swift in Sources */,

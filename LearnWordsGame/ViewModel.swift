@@ -23,4 +23,12 @@ class ViewModel: ObservableObject {
     func addCard(word: String, translatedWord: String) {
         cards.append(Card(word: word, translatedWord: translatedWord))
     }
+    func changeCard(card: Card) {
+        if let index = cards.firstIndex(where: {$0.id == card.id}) {
+            cards[index] = card.updateCompletion()
+        }
+    }
+    func deleteItem(indexSet: IndexSet) {
+        cards.remove(atOffsets: indexSet)
+    }
 }

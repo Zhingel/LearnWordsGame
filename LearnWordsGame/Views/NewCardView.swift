@@ -17,7 +17,8 @@ struct NewCard : View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(.gray)
+                .frame(width: 300, height: 300)
+                .foregroundColor(Color("backGroundColor"))
                 .shadow(color: .black, radius: 4, x: 3, y: -5)
             VStack(spacing: 20) {
                 Text(isNewCard ? "Новое слово" : "Изменить")
@@ -44,13 +45,32 @@ struct NewCard : View {
                     if isNewCard {
                         viewModel.addCard(word: newWord, translatedWord: newTranslatedWord)
                         isNewCard.toggle()
-                    } else {
+                    }
+                    if isChanged {
+                        viewModel.changeCard(card: card)
                         isChanged.toggle()
                     }
                 }
                 Spacer()
             }
+            if isChanged {
+                VStack {
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            
+                        }) {
+                            Image(systemName: "minus.circle.fill")
+                                .font(.title)
+                                .foregroundColor(.red)
+                        }
+                    }
+                    Spacer()
+                }
+            }
         }
-        .frame(width: 300, height: 300)
+        .frame(width: 325, height: 325)
     }
 }
+
+

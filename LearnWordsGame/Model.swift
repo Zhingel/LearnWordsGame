@@ -15,4 +15,10 @@ struct Card: Identifiable {
     var offset: CGFloat = 0
     var matchUpScore: Int = 0
     var isFaceUp: Bool = false
+    
+    
+    
+    func updateCompletion() -> Card {
+        return Card(word: word, translatedWord: translatedWord)
+    }
 }

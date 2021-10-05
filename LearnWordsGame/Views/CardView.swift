@@ -12,8 +12,8 @@ struct CardView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
+                .foregroundColor(.white)
                 .frame(width: 150, height: 150)
-                .foregroundColor(.gray)
                 .shadow(color: .gray, radius: 1, x: 1, y: -1)
             VStack {
                 Text(card.word)
@@ -25,3 +25,9 @@ struct CardView: View {
     }
 }
 
+struct CardView_Previews: PreviewProvider {
+    static var previews: some View {
+        CardView(card: Card(word: "Яблоко", translatedWord: "Apple"))
+            .previewLayout(.sizeThatFits)
+    }
+}

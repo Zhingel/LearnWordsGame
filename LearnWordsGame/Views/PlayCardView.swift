@@ -8,8 +8,24 @@
 import SwiftUI
 
 struct PlayCardView: View {
+    @EnvironmentObject var viewModel: ViewModel
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        GeometryReader { g in
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    ZStack {
+                        ForEach(viewModel.cards) { card in
+                            GameCard(frame: g.frame(in: .global), card: card)
+                        }
+                    }
+                    Spacer()
+                }
+                Spacer()
+            }
+            .background(Color.black)
+        }
     }
 }
 
