@@ -20,6 +20,7 @@ struct CardView: View {
                     .padding(3)
                 Text(card.translatedWord)
                     .padding(3)
+                Text("\(card.matchUpScore)")
             }
         }
     }

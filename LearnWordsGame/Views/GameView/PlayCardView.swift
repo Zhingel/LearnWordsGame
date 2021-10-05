@@ -16,7 +16,7 @@ struct PlayCardView: View {
                 HStack {
                     Spacer()
                     ZStack {
-                        ForEach(viewModel.cards) { card in
+                        ForEach(viewModel.cards.shuffled()) { card in
                             GameCard(frame: g.frame(in: .global), card: card)
                         }
                     }

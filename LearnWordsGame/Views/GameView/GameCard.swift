@@ -39,10 +39,10 @@ struct GameCard: View {
             withAnimation(Animation.easeIn) {
                 if CGFloat(offsetCard) > 150 {
                     offsetCard = 500
-                    //card.matchUp.toggle()
+                    card.matchUpScore -= 1
                 } else if CGFloat(offsetCard) < -150 {
                     offsetCard = -500
-                  //  card.matchUp.toggle()
+                    card.matchUpScore += 1
                 } else  {
                     offsetCard = 0
                 }

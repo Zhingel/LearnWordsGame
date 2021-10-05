@@ -87,13 +87,29 @@
 			isa = PBXGroup;
 			children = (
 				EE6F6733270C41CF00F02BE0 /* ContentView.swift */,
-				EE6F6749270C5AD700F02BE0 /* PlayCardView.swift */,
-				EE6F6745270C59FE00F02BE0 /* AllCardCollection.swift */,
-				EE6F674E270C6A7C00F02BE0 /* CardView.swift */,
-				EE6F6750270C9B4300F02BE0 /* GameCard.swift */,
-				EE6F6747270C5A6F00F02BE0 /* NewCardView.swift */,
+				EE6F6752270C9CFA00F02BE0 /* Collection */,
+				EE6F6753270C9D3300F02BE0 /* GameView */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		EE6F6752270C9CFA00F02BE0 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				EE6F6745270C59FE00F02BE0 /* AllCardCollection.swift */,
+				EE6F674E270C6A7C00F02BE0 /* CardView.swift */,
+				EE6F6747270C5A6F00F02BE0 /* NewCardView.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		EE6F6753270C9D3300F02BE0 /* GameView */ = {
+			isa = PBXGroup;
+			children = (
+				EE6F6749270C5AD700F02BE0 /* PlayCardView.swift */,
+				EE6F6750270C9B4300F02BE0 /* GameCard.swift */,
+			);
+			path = GameView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
