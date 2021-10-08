@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PlayCardView: View {
+    @State var refresh = false
     @EnvironmentObject var viewModel: ViewModel
     var body: some View {
         GeometryReader { g in
@@ -16,9 +17,25 @@ struct PlayCardView: View {
                 HStack {
                     Spacer()
                     ZStack {
-                        ForEach(viewModel.cards.shuffled()) { card in
+//MARK: - problem
+                        Button("Перемешать") {
+                            refresh.toggle()
+                        }
+                        ForEach(viewModel.cardsGame.shuffled()) { card in
                             GameCard(frame: g.frame(in: .global), card: card)
                         }
+                        
+                        if !refresh {
+                            ForEach(viewModel.cardsGame.shuffled()) { card in
+                                GameCard(frame: g.frame(in: .global), card: card)
+                            }
+                        }
+                        if refresh {
+                            ForEach(viewModel.cardsGame.shuffled()) { card in
+                                GameCard(frame: g.frame(in: .global), card: card)
+                            }
+                        }
+                        
                     }
                     Spacer()
                 }
@@ -27,6 +44,7 @@ struct PlayCardView: View {
             .background(Color.black)
         }
     }
+   
 }
 
 struct PlayCardView_Previews: PreviewProvider {

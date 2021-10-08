@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GameCard: View {
     var frame: CGRect
+    @EnvironmentObject var viewModel: ViewModel
     @State var card: Card
     @State var offsetCard: CGFloat = 0
     @State var isFaceUp = false
@@ -40,9 +41,15 @@ struct GameCard: View {
                 if CGFloat(offsetCard) > 150 {
                     offsetCard = 500
                     card.matchUpScore -= 1
+                    viewModel.changeCard(card: card)
+                    print(card)
+                     
                 } else if CGFloat(offsetCard) < -150 {
                     offsetCard = -500
                     card.matchUpScore += 1
+                    viewModel.changeCard(card: card)
+                    print(card)
+                   
                 } else  {
                     offsetCard = 0
                 }

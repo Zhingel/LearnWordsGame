@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AllCardCollection: View {
     @EnvironmentObject var viewModel: ViewModel
-    @State var cardChoosen: Card = Card(word: "", translatedWord: "")
+    @State var cardChoosen: Card = Card(word: "", translatedWord: "", matchUpScore: 0)
     @State var isChanged = false
     @State var isNewCard = false
     var columns: [GridItem] =
@@ -23,6 +23,7 @@ struct AllCardCollection: View {
                             CardView(card: card)
                                 .padding(.top, 15)
                                 .onTapGesture {
+                                    print(card)
                                 }
                                 .onLongPressGesture {
                                 if !isChanged {

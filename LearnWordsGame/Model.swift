@@ -8,17 +8,19 @@
 import SwiftUI
 
 
-struct Card: Identifiable {
+struct Card: Identifiable, Codable {
     var id = UUID()
     var word: String
     var translatedWord: String
     var offset: CGFloat = 0
     var matchUpScore: Int = 0
-    var isFaceUp: Bool = false
-    
+
     
     
     func updateCompletion() -> Card {
-        return Card(word: word, translatedWord: translatedWord)
+        return Card(word: word, translatedWord: translatedWord, matchUpScore: matchUpScore)
     }
 }
+
+///
+/// Создается массив для игры он и показывает карточки, и данные в настоящем массиве перезаписываются сразу

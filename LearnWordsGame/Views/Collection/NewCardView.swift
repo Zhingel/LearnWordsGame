@@ -43,7 +43,7 @@ struct NewCard : View {
                 .frame(width: 200, height: 40, alignment: .center)
                 Button("Save") {
                     if isNewCard {
-                        viewModel.addCard(word: newWord, translatedWord: newTranslatedWord)
+                        viewModel.addCard(word: newWord, translatedWord: newTranslatedWord, matchUpScore: card.matchUpScore)
                         isNewCard.toggle()
                     }
                     if isChanged {

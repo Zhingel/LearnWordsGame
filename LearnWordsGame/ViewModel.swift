@@ -6,29 +6,55 @@
 //
 
 import Foundation
+import SwiftUI
 
 class ViewModel: ObservableObject {
-    var cards: [Card] = [
-        Card(word: "Первый", translatedWord: "First"),
-        Card(word: "Второй", translatedWord: "Second"),
-        Card(word: "Третий", translatedWord: "Third"),
-        Card(word: "Четвертый", translatedWord: "Fourth"),
-        Card(word: "Пятый", translatedWord: "Fifth"),
-        Card(word: "Шестой", translatedWord: "Sixth"),
-        Card(word: "Седьмой", translatedWord: "Seventh"),
-        Card(word: "Восьмой", translatedWord: "Eighth"),
-        Card(word: "Девятый", translatedWord: "Ninth")
-    ]
+    @Published var array =  [String : Int]()
+    @Published var score : Int = 0
+    @Published var cardsGame: [Card] = []
     
-    func addCard(word: String, translatedWord: String) {
-        cards.append(Card(word: word, translatedWord: translatedWord))
+    var cards: [Card] = [] {
+        didSet {
+            saveItems()
+        }
+    }
+    let itemsKey: String = "items_list"
+    init() {
+        getItems()
+        gameStart()
+    }
+    func saveCards() {
+        self.cards = cardsGame
+        objectWillChange.send()
+    }
+    func getItems() {
+        guard
+            let data = UserDefaults.standard.data(forKey: itemsKey),
+            let savedItems = try? JSONDecoder().decode([Card].self, from: data)
+        else {return}
+        self.cards = savedItems
+    }
+    func gameStart() {
+        self.cardsGame = cards
+    }
+    func addCard(word: String, translatedWord: String, matchUpScore: Int) {
+        cards.append(Card(word: word, translatedWord: translatedWord, matchUpScore: matchUpScore))
+        saveItems()
     }
     func changeCard(card: Card) {
         if let index = cards.firstIndex(where: {$0.id == card.id}) {
             cards[index] = card.updateCompletion()
+          //  objectWillChange.send()
         }
+        saveItems()
     }
     func deleteItem(indexSet: IndexSet) {
         cards.remove(atOffsets: indexSet)
     }
+    func saveItems() {
+        if let encodedData = try? JSONEncoder().encode(cards) {
+            UserDefaults.standard.set(encodedData, forKey: itemsKey)
+        }
+    }
+    
 }

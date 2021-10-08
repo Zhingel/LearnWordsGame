@@ -28,7 +28,7 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(card: Card(word: "Яблоко", translatedWord: "Apple"))
+        CardView(card: Card(word: "Яблоко", translatedWord: "Apple", matchUpScore: 0))
             .previewLayout(.sizeThatFits)
     }
 }
