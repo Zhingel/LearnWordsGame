@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct PlayCardView: View {
-    @State var refresh = false
     @EnvironmentObject var viewModel: ViewModel
     var body: some View {
         GeometryReader { g in
@@ -35,8 +34,4 @@ struct PlayCardView: View {
    
 }
 
-struct PlayCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        PlayCardView()
-    }
-}
+
