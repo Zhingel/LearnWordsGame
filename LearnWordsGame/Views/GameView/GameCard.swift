@@ -19,8 +19,19 @@ struct GameCard: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerSize: CGSize(width: 10, height: 10))
-                .foregroundColor(.gray)
+                .fill(.gray)
                 .shadow(color: .black, radius: 4, x: 5, y: -5)
+            ZStack  {
+                if offsetCard > 30 {
+                    LinearGradient(colors: [.green,.gray], startPoint: .init(x: 1, y: 1), endPoint: .init(x: 1 - (offsetCard - 30)*0.4/100, y: 1 - (offsetCard - 30)*0.4/100))
+                } else if offsetCard < -30 {
+                    LinearGradient(colors: [.red, .gray], startPoint: .init(x: -0.9, y: 0), endPoint: .init(x: 0, y: (offsetCard + 30)/100))
+                }
+
+                
+            }
+            .cornerRadius(10)
+            
             VStack {
                 if textGameStart {
                     Text(isFaceUpForAll ? card.translatedWord : card.word)
@@ -47,6 +58,7 @@ struct GameCard: View {
                 .onChanged({ value in
             withAnimation(.default) {
                 offsetCard = value.translation.width
+                print(offsetCard)
                     }})
                 .onEnded({ value in
             withAnimation(Animation.easeIn) {

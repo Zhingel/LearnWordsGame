@@ -31,8 +31,7 @@ struct PlayCardView: View {
                     }
                 }
                 .font(.largeTitle)
-                .padding()
-
+                .padding([.top,.trailing])
                 Spacer()
                 HStack {
                     Spacer()
