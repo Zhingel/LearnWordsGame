@@ -17,7 +17,7 @@ struct AllCardCollection: View {
     var body: some View {
         NavigationView {
             ZStack {
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     LazyVGrid(columns: columns, alignment: .center) {
                         ForEach(viewModel.cards.reversed()) { card in
                             CardView(card: card)
@@ -34,6 +34,7 @@ struct AllCardCollection: View {
                         }
                     }
                 }
+                .allowsHitTesting(isNewCard || isChanged ? false : true)
                 .blur(radius: isNewCard || isChanged  ? 6 : 0)
                 .opacity(isNewCard || isChanged ? 0.6 : 1)
                 if isNewCard  || isChanged {
