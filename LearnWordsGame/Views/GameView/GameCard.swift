@@ -34,18 +34,30 @@ struct GameCard: View {
             
             VStack {
                 if textGameStart {
-                    VStack {
-                        Text(isFaceUpForAll ? card.translatedWord : card.word)
+                        Text(isFaceUpForAll ? card.word : card.translatedWord)
                         HStack {
                             TextField("Введите перевод", text: $textGame)
                             .font(.title2)
                             .disableAutocorrection(true)
-                            Button(action: {}) {
+                            Button(action: {
+                                if textGame == (isFaceUpForAll ? card.translatedWord : card.word) {
+                                    offsetCard = 500
+                                    card.matchUpScore += 1
+                                    viewModel.changeCard(card: card)
+                                    print(card)
+                                } else {
+                                    offsetCard = -500
+                                    card.matchUpScore -= 1
+                                    viewModel.changeCard(card: card)
+                                    print(card)
+                                }
+                                    
+                            }) {
                                 Image(systemName: "chevron.forward.square" )
                             }
                         }
                         .padding(.horizontal, 40)
-                    }
+    
                 } else {
                     if isFaceUp {
                         Text(isFaceUpForAll ? card.translatedWord : card.word)
