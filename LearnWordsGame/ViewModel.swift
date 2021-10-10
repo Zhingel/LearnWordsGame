@@ -9,11 +9,9 @@ import Foundation
 import SwiftUI
 
 class ViewModel: ObservableObject {
-    @Published var array =  [String : Int]()
     @Published var score : Int = 0
     @Published var cardsGame: [Card] = []
-    
-    var cards: [Card] = [] {
+    @Published var cards: [Card] = [] {
         didSet {
             saveItems()
         }
@@ -44,12 +42,13 @@ class ViewModel: ObservableObject {
     func changeCard(card: Card) {
         if let index = cards.firstIndex(where: {$0.id == card.id}) {
             cards[index] = card.updateCompletion()
-          //  objectWillChange.send()
         }
         saveItems()
     }
-    func deleteItem(indexSet: IndexSet) {
-        cards.remove(atOffsets: indexSet)
+    func deleteItem(card: Card) {
+        if let index = cards.firstIndex(where: {$0.id == card.id}) {
+            cards.remove(at: index)
+        }
     }
     func saveItems() {
         if let encodedData = try? JSONEncoder().encode(cards) {

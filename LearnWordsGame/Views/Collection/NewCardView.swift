@@ -44,10 +44,12 @@ struct NewCard : View {
                 Button("Save") {
                     if isNewCard {
                         viewModel.addCard(word: newWord, translatedWord: newTranslatedWord, matchUpScore: card.matchUpScore)
+                        viewModel.gameStart()
                         isNewCard.toggle()
                     }
                     if isChanged {
                         viewModel.changeCard(card: card)
+                        viewModel.gameStart()
                         isChanged.toggle()
                     }
                 }
@@ -58,7 +60,9 @@ struct NewCard : View {
                     HStack {
                         Spacer()
                         Button(action: {
-                            
+                            viewModel.deleteItem(card: card)
+                            isChanged.toggle()
+                            viewModel.gameStart()
                         }) {
                             Image(systemName: "minus.circle.fill")
                                 .font(.title)

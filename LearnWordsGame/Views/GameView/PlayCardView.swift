@@ -19,23 +19,11 @@ struct PlayCardView: View {
                     ZStack {
 //MARK: - problem
                         Button("Перемешать") {
-                            refresh.toggle()
+                            viewModel.gameStart()
                         }
                         ForEach(viewModel.cardsGame.shuffled()) { card in
                             GameCard(frame: g.frame(in: .global), card: card)
                         }
-                        
-                        if !refresh {
-                            ForEach(viewModel.cardsGame.shuffled()) { card in
-                                GameCard(frame: g.frame(in: .global), card: card)
-                            }
-                        }
-                        if refresh {
-                            ForEach(viewModel.cardsGame.shuffled()) { card in
-                                GameCard(frame: g.frame(in: .global), card: card)
-                            }
-                        }
-                        
                     }
                     Spacer()
                 }
