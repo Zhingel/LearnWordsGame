@@ -34,10 +34,18 @@ struct GameCard: View {
             
             VStack {
                 if textGameStart {
-                    Text(isFaceUpForAll ? card.translatedWord : card.word)
-                    TextField("Введите перевод", text: $textGame)
-                        .padding(.horizontal, 60)
-                        .font(.title2)
+                    VStack {
+                        Text(isFaceUpForAll ? card.translatedWord : card.word)
+                        HStack {
+                            TextField("Введите перевод", text: $textGame)
+                            .font(.title2)
+                            .disableAutocorrection(true)
+                            Button(action: {}) {
+                                Image(systemName: "chevron.forward.square" )
+                            }
+                        }
+                        .padding(.horizontal, 40)
+                    }
                 } else {
                     if isFaceUp {
                         Text(isFaceUpForAll ? card.translatedWord : card.word)
