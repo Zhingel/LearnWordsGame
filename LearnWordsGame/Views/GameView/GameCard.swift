@@ -13,15 +13,16 @@ struct GameCard: View {
     @State var card: Card
     @State var offsetCard: CGFloat = 0
     @State var isFaceUp = false
+    @Binding var isFaceUpForAll: Bool
     var body: some View {
         ZStack {
             RoundedRectangle(cornerSize: CGSize(width: 10, height: 10))
                 .foregroundColor(.gray)
                 .shadow(color: .black, radius: 4, x: 5, y: -5)
             if isFaceUp {
-                Text(card.word)
+                Text(isFaceUpForAll ? card.translatedWord : card.word)
             } else {
-                Text(card.translatedWord)
+                Text(isFaceUpForAll ? card.word : card.translatedWord)
             }
         }
         .frame(width: 300, height: 250, alignment: .center)

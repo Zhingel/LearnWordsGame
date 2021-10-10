@@ -13,12 +13,13 @@ struct ContentView: View {
         TabView {
             PlayCardView()
                 .tabItem {
-                    Text("First")
+                    Image(systemName: "rectangle.on.rectangle")
+                    Text("Карточки")
                 }
             AllCardCollection()
                 .tabItem {
-                    Text("Second")
-                        
+                    Image(systemName: "books.vertical.fill")
+                    Text("Коллекция")
                 }
         }
     }

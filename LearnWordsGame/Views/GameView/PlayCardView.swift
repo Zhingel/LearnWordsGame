@@ -9,9 +9,21 @@ import SwiftUI
 
 struct PlayCardView: View {
     @EnvironmentObject var viewModel: ViewModel
+    @State var isFaceUpForAll = false
     var body: some View {
         GeometryReader { g in
             VStack {
+                HStack {
+                    Spacer()
+                    Button (action: {
+                        isFaceUpForAll.toggle()
+                    }){
+                        Image(systemName: "arrow.triangle.2.circlepath.circle")
+                            .font(.largeTitle)
+                    }
+                    .padding()
+                }
+
                 Spacer()
                 HStack {
                     Spacer()
@@ -21,7 +33,7 @@ struct PlayCardView: View {
                             viewModel.gameStart()
                         }
                         ForEach(viewModel.cardsGame.shuffled()) { card in
-                            GameCard(frame: g.frame(in: .global), card: card)
+                            GameCard(frame: g.frame(in: .global), card: card, isFaceUpForAll: $isFaceUpForAll)
                         }
                     }
                     Spacer()

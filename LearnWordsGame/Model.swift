@@ -12,7 +12,6 @@ struct Card: Identifiable, Codable {
     var id = UUID()
     var word: String
     var translatedWord: String
-    var offset: CGFloat = 0
     var matchUpScore: Int = 0
 
     
@@ -24,3 +23,7 @@ struct Card: Identifiable, Codable {
 
 ///
 /// Создается массив для игры он и показывает карточки, и данные в настоящем массиве перезаписываются сразу
+///
+///
+/// не могу выставить превью для newCard
+/// Массив, созданный специально для игры, постоянно перемешивается
