@@ -13,22 +13,29 @@ struct GameCard: View {
     @State var card: Card
     @State var offsetCard: CGFloat = 0
     @State var isFaceUp = false
+    @State var animationTrue = false
     @Binding var isFaceUpForAll: Bool
     @Binding var textGameStart: Bool
     @State var textGame = ""
     var body: some View {
         ZStack {
             RoundedRectangle(cornerSize: CGSize(width: 10, height: 10))
-                .fill(.gray)
+               // .fill(.gray)
                 .shadow(color: .black, radius: 4, x: 5, y: -5)
-            ZStack  {
-                if offsetCard > 30 {
-                    LinearGradient(colors: [.green,.gray], startPoint: .init(x: 1, y: 1), endPoint: .init(x: 1 - (offsetCard - 30)*0.4/100, y: 1 - (offsetCard - 30)*0.4/100))
-                } else if offsetCard < -30 {
-                    LinearGradient(colors: [.red, .gray], startPoint: .init(x: -0.9, y: 0), endPoint: .init(x: 0, y: (offsetCard + 30)/100))
+//            ZStack  {
+//                if offsetCard > 30 {
+//                    LinearGradient(colors: [.green,.gray], startPoint: .init(x: 1, y: 1), endPoint: .init(x: 1 - (offsetCard - 30)*0.4/100, y: 1 - (offsetCard - 30)*0.4/100))
+//                } else if offsetCard < -30 {
+//                    LinearGradient(colors: [.red, .gray], startPoint: .init(x: -0.9, y: 0), endPoint: .init(x: 0, y: (offsetCard + 30)/100))
+//                }
+//
+//
+//            }
+//            .cornerRadius(10)
+            ZStack {
+                withAnimation(.linear(duration: 0.3)){
+                    (offsetCard != 0 ? (offsetCard > 0 ? Color.red : Color.green) : Color.gray)
                 }
-
-                
             }
             .cornerRadius(10)
             
@@ -40,16 +47,19 @@ struct GameCard: View {
                             .font(.title2)
                             .disableAutocorrection(true)
                             Button(action: {
-                                if textGame == (isFaceUpForAll ? card.translatedWord : card.word) {
-                                    offsetCard = 500
-                                    card.matchUpScore += 1
-                                    viewModel.changeCard(card: card)
-                                    print(card)
-                                } else {
-                                    offsetCard = -500
-                                    card.matchUpScore -= 1
-                                    viewModel.changeCard(card: card)
-                                    print(card)
+                                withAnimation(.linear(duration: 0.5)){
+                                    if textGame == (isFaceUpForAll ? card.translatedWord : card.word) {
+                                        animationTrue.toggle()
+                                        offsetCard = -500
+                                        card.matchUpScore += 1
+                                        viewModel.changeCard(card: card)
+                                        print(card)
+                                    } else {
+                                        offsetCard = 500
+                                        card.matchUpScore -= 1
+                                        viewModel.changeCard(card: card)
+                                        print(card)
+                                    }
                                 }
                                     
                             }) {
@@ -66,6 +76,7 @@ struct GameCard: View {
                     }
                 }
             }
+            
         }
         .frame(width: 300, height: 250, alignment: .center)
         .font(.title)
