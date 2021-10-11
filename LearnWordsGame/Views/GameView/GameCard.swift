@@ -20,7 +20,6 @@ struct GameCard: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerSize: CGSize(width: 10, height: 10))
-               // .fill(.gray)
                 .shadow(color: .black, radius: 4, x: 5, y: -5)
 //            ZStack  {
 //                if offsetCard > 30 {
@@ -36,20 +35,32 @@ struct GameCard: View {
                 withAnimation(.linear(duration: 0.3)){
                     (offsetCard != 0 ? (offsetCard > 0 ? Color.red : Color.green) : Color.gray)
                 }
+                if textGameStart {
+                    withAnimation(.linear(duration: 1)){
+                        (animationTrue ? (textGame == (isFaceUpForAll ? card.translatedWord : card.word) ? Color.green : Color.red) : Color.gray)
+                    }
+                }
             }
             .cornerRadius(10)
             
             VStack {
                 if textGameStart {
+                    if animationTrue {
+                        Text(isFaceUpForAll ? card.translatedWord : card.word)
+                            .font(.largeTitle)
+                            .bold()
+                        
+                    } else {
                         Text(isFaceUpForAll ? card.word : card.translatedWord)
+                    }
                         HStack {
                             TextField("Введите перевод", text: $textGame)
                             .font(.title2)
                             .disableAutocorrection(true)
                             Button(action: {
-                                withAnimation(.linear(duration: 0.5)){
+                                animationTrue.toggle()
+                                withAnimation(.linear(duration: 0.5).delay(1)){
                                     if textGame == (isFaceUpForAll ? card.translatedWord : card.word) {
-                                        animationTrue.toggle()
                                         offsetCard = -500
                                         card.matchUpScore += 1
                                         viewModel.changeCard(card: card)
