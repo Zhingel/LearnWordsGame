@@ -30,7 +30,7 @@ class ViewModel: ObservableObject {
         self.cards = savedItems
     }
     func gameStart() {
-        self.cardsGame = cards
+        self.cardsGame = cards.shuffled()
     }
     func addCard(word: String, translatedWord: String, matchUpScore: Int) {
         cards.append(Card(word: word, translatedWord: translatedWord, matchUpScore: matchUpScore))
@@ -54,3 +54,5 @@ class ViewModel: ObservableObject {
     }
     
 }
+
+

@@ -40,7 +40,7 @@ struct PlayCardView: View {
                         Button("Перемешать") {
                             viewModel.gameStart()
                         }
-                        ForEach(viewModel.cardsGame.shuffled()) { card in
+                        ForEach(viewModel.cardsGame) { card in
                             GameCard(frame: g.frame(in: .global), card: card, isFaceUpForAll: $isFaceUpForAll, textGameStart: $textGameStart)
                         }
                     }

@@ -21,6 +21,12 @@ struct Card: Identifiable, Codable {
     }
 }
 
+extension String {
+    func deletingPrefix(_ prefix: String) -> String {
+        guard self.hasPrefix(prefix) else { return self }
+        return String(self.dropFirst(prefix.count))
+    }
+}
 ///
 /// Создается массив для игры он и показывает карточки, и данные в настоящем массиве перезаписываются сразу
 ///
