@@ -21,6 +21,18 @@ struct CardView: View {
                 Text(card.translatedWord)
                     .padding(3)
                 Text("\(card.matchUpScore)")
+                switch card.matchUpScore {
+                case ...0 :
+                    Text("Bad")
+                case 1...5 :
+                    Text("Normal")
+                case 6...9 :
+                    Text("Nice")
+                case 10... :
+                    Text("Perfect")
+                default:
+                    Text("good")
+                }
             }
         }
     }

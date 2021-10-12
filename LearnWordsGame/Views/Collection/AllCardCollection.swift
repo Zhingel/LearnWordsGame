@@ -33,6 +33,7 @@ struct AllCardCollection: View {
                             }
                         }
                     }
+                    .padding(.bottom,20)
                 }
                 .allowsHitTesting(isNewCard || isChanged ? false : true)
                 .blur(radius: isNewCard || isChanged  ? 6 : 0)

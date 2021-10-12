@@ -11,6 +11,7 @@ import SwiftUI
 class ViewModel: ObservableObject {
     @Published var score : Int = 0
     @Published var cardsGame: [Card] = []
+    @Published var mistakesCards: [Card] = []
      var cards: [Card] = [] {
         didSet {
             saveItems()
@@ -30,7 +31,9 @@ class ViewModel: ObservableObject {
         self.cards = savedItems
     }
     func gameStart() {
-        self.cardsGame = cards.shuffled()
+        self.cardsGame = (cards + mistakesArray()).shuffled()
+        
+        print(cardsGame)
     }
     func addCard(word: String, translatedWord: String, matchUpScore: Int) {
         cards.append(Card(word: word, translatedWord: translatedWord, matchUpScore: matchUpScore))
@@ -52,7 +55,14 @@ class ViewModel: ObservableObject {
             UserDefaults.standard.set(encodedData, forKey: itemsKey)
         }
     }
-    
+    func mistakesArray() -> [Card] {
+        if let index = cards.firstIndex(where: {$0.matchUpScore < 0}) {
+            mistakesCards.append(cards[index])
+            mistakesCards.append(cards[index])
+            return mistakesCards
+        }
+        return []
+    }
 }
 
 
