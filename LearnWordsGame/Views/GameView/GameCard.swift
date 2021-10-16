@@ -48,6 +48,7 @@ struct GameCard: View {
                         HStack {
                             TextField("Введите перевод", text: $textGame)
                             .font(.title2)
+                            .autocapitalization(.none)
                             .disableAutocorrection(true)
                             Button(action: {
                                 animationTrue.toggle()

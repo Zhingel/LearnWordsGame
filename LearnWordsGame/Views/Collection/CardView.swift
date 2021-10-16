@@ -22,13 +22,13 @@ struct CardView: View {
                     .padding(3)
                 Text("\(card.matchUpScore)")
                 switch card.matchUpScore {
-                case ...0 :
+                case ...(-3) :
                     Text("Bad")
-                case 1...5 :
+                case (-2)...0 :
                     Text("Normal")
-                case 6...9 :
+                case 1...4 :
                     Text("Nice")
-                case 10... :
+                case 5... :
                     Text("Perfect")
                 default:
                     Text("good")
