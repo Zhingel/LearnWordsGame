@@ -19,6 +19,7 @@ class ViewModel: ObservableObject {
     }
     let itemsKey: String = "items_list"
     init() {
+        
         getItems()
         gameStart()
     }
@@ -32,9 +33,11 @@ class ViewModel: ObservableObject {
     }
     func gameStart() {
         mistakesCards = mistakesArray()
+        let game = (mistakesCards + cards.filter{$0.matchUpScore < 5} + goodArray())
         
-        self.cardsGame = (mistakesCards + cards).shuffled()
+        self.cardsGame = game.shuffled()
         print(cards)
+        print(game)
         
      
     }
@@ -74,11 +77,23 @@ class ViewModel: ObservableObject {
         }
     }
     func mistakesArray() -> [Card] {
-        let mistake = cards.filter {$0.matchUpScore < 0}
+        let mistake = cards.filter {$0.matchUpScore < -3}
         for card in mistake {
+            mistakesCards.append(Card(word: card.word, translatedWord: card.translatedWord, matchUpScore: card.matchUpScore))
+            mistakesCards.append(Card(word: card.word, translatedWord: card.translatedWord, matchUpScore: card.matchUpScore))
+        }
+        let mistake2 = cards.filter {$0.matchUpScore < 0 && $0.matchUpScore > -4}
+        for card in mistake2 {
             mistakesCards.append(Card(word: card.word, translatedWord: card.translatedWord, matchUpScore: card.matchUpScore))
         }
         
         return mistakesCards
+    }
+    func goodArray() -> [Card] {
+        let goodWords = cards.shuffled().filter {$0.matchUpScore > 4}
+        guard goodWords.count != 0 else {return []}
+        let randomElements = goodWords.count > 0 ? goodWords.count/2 : 1
+        let newArray = Array(goodWords.prefix(randomElements))
+        return newArray
     }
 }

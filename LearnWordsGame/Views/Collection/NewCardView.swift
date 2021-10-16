@@ -44,12 +44,12 @@ struct NewCard : View {
                 Button("Save") {
                     if isNewCard {
                         viewModel.addCard(word: newWord, translatedWord: newTranslatedWord, matchUpScore: card.matchUpScore)
-                        viewModel.gameStart()
+                       // viewModel.gameStart()
                         isNewCard.toggle()
                     }
                     if isChanged {
                         viewModel.changeCard(card: card)
-                        viewModel.gameStart()
+                      //  viewModel.gameStart()
                         isChanged.toggle()
                     }
                 }
@@ -62,7 +62,7 @@ struct NewCard : View {
                         Button(action: {
                             viewModel.deleteItem(card: card)
                             isChanged.toggle()
-                            viewModel.gameStart()
+                        //    viewModel.gameStart()
                         }) {
                             Image(systemName: "minus.circle.fill")
                                 .font(.title)

@@ -53,22 +53,13 @@ struct GameCard: View {
                                 animationTrue.toggle()
                                 withAnimation(.linear(duration: 0.5).delay(1.5)){
                                     if wordsIsEqual() {
-                                        ////////////////////
                                         offsetCard = -500
-                                        card.matchUpScore += 1
-                                        viewModel.changeCard(card: card)
-                                     
-                                        print(card)
+                                        viewModel.updateScore(card: card, offset: offsetCard)
                                     } else {
-                                        ////////////////////
                                         offsetCard = 500
-                                        card.matchUpScore -= 1
-                                        viewModel.changeCard(card: card)
-                                     
-                                        print(card)
+                                        viewModel.updateScore(card: card, offset: offsetCard)
                                     }
                                 }
-                                    
                             }) {
                                 Image(systemName: "chevron.forward.square" )
                             }
@@ -96,7 +87,6 @@ struct GameCard: View {
                 .onChanged({ value in
             withAnimation(.default) {
                 offsetCard = value.translation.width
-                //print(offsetCard)
                     }})
                 .onEnded({ value in
             withAnimation(Animation.easeIn) {
@@ -125,9 +115,11 @@ struct GameCard: View {
                             .lowercased()
                             .deletingPrefix("a")
                             .deletingPrefix("an")
+                            .deletingPrefix("to")
                         : card.word
                             .lowercased()
                             .deletingPrefix("a")
+                            .deletingPrefix("to")
                             .deletingPrefix("an"))
         
         if playerText == trueWord {

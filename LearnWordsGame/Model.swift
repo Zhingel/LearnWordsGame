@@ -19,6 +19,7 @@ struct Card: Identifiable, Codable {
     func updateCompletion() -> Card {
         return Card(word: word, translatedWord: translatedWord, matchUpScore: matchUpScore)
     }
+    
 }
 
 extension String {

@@ -36,7 +36,6 @@ struct PlayCardView: View {
                 HStack {
                     Spacer()
                     ZStack {
-//MARK: - problem
                         Button("Перемешать") {
                             viewModel.gameStart()
                         }
