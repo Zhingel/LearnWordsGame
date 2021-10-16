@@ -80,7 +80,9 @@ class ViewModel: ObservableObject {
         let mistake = cards.filter {$0.matchUpScore < -3}
         for card in mistake {
             mistakesCards.append(Card(word: card.word, translatedWord: card.translatedWord, matchUpScore: card.matchUpScore))
-            mistakesCards.append(Card(word: card.word, translatedWord: card.translatedWord, matchUpScore: card.matchUpScore))
+            if cards.count > 6 {
+                mistakesCards.append(Card(word: card.word, translatedWord: card.translatedWord, matchUpScore: card.matchUpScore))
+            }
         }
         let mistake2 = cards.filter {$0.matchUpScore < 0 && $0.matchUpScore > -4}
         for card in mistake2 {
