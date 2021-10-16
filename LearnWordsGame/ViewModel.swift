@@ -31,9 +31,12 @@ class ViewModel: ObservableObject {
         self.cards = savedItems
     }
     func gameStart() {
-        self.cardsGame = (cards + mistakesArray()).shuffled()
+        mistakesCards = mistakesArray()
         
-        print(cardsGame)
+        self.cardsGame = (mistakesCards + cards).shuffled()
+        print(cards)
+        
+     
     }
     func addCard(word: String, translatedWord: String, matchUpScore: Int) {
         cards.append(Card(word: word, translatedWord: translatedWord, matchUpScore: matchUpScore))
@@ -41,10 +44,25 @@ class ViewModel: ObservableObject {
     }
     func changeCard(card: Card) {
         if let index = cards.firstIndex(where: {$0.id == card.id}) {
+            print(card.matchUpScore)
             cards[index] = card.updateCompletion()
         }
-        
     }
+    func updateScore(card: Card, offset: CGFloat) {
+        if let index = cards.firstIndex(where: {$0.word == card.word}) {
+            print(card.matchUpScore)
+            if  offset > 0 {
+                cards[index].matchUpScore -= 1
+                cards[index] = cards[index].updateCompletion()
+                print(card.matchUpScore)
+            } else if offset < 0 {
+                cards[index].matchUpScore += 1
+                cards[index] = cards[index].updateCompletion()
+                print(card.matchUpScore)
+            }
+        }
+    }
+    
     func deleteItem(card: Card) {
         if let index = cards.firstIndex(where: {$0.id == card.id}) {
             cards.remove(at: index)
@@ -56,13 +74,11 @@ class ViewModel: ObservableObject {
         }
     }
     func mistakesArray() -> [Card] {
-        if let index = cards.firstIndex(where: {$0.matchUpScore < 0}) {
-            mistakesCards.append(cards[index])
-            mistakesCards.append(cards[index])
-            return mistakesCards
+        let mistake = cards.filter {$0.matchUpScore < 0}
+        for card in mistake {
+            mistakesCards.append(Card(word: card.word, translatedWord: card.translatedWord, matchUpScore: card.matchUpScore))
         }
-        return []
+        
+        return mistakesCards
     }
 }
-
-

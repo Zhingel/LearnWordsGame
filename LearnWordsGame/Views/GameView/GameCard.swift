@@ -51,16 +51,20 @@ struct GameCard: View {
                             .disableAutocorrection(true)
                             Button(action: {
                                 animationTrue.toggle()
-                                withAnimation(.linear(duration: 0.5).delay(1)){
+                                withAnimation(.linear(duration: 0.5).delay(1.5)){
                                     if wordsIsEqual() {
+                                        ////////////////////
                                         offsetCard = -500
                                         card.matchUpScore += 1
                                         viewModel.changeCard(card: card)
+                                     
                                         print(card)
                                     } else {
+                                        ////////////////////
                                         offsetCard = 500
                                         card.matchUpScore -= 1
                                         viewModel.changeCard(card: card)
+                                     
                                         print(card)
                                     }
                                 }
@@ -92,20 +96,18 @@ struct GameCard: View {
                 .onChanged({ value in
             withAnimation(.default) {
                 offsetCard = value.translation.width
-                print(offsetCard)
+                //print(offsetCard)
                     }})
                 .onEnded({ value in
             withAnimation(Animation.easeIn) {
                 if CGFloat(offsetCard) > 150 {
                     offsetCard = 500
-                    card.matchUpScore -= 1
-                    viewModel.changeCard(card: card)
+                    viewModel.updateScore(card: card, offset: offsetCard)
                     print(card)
                      
                 } else if CGFloat(offsetCard) < -150 {
                     offsetCard = -500
-                    card.matchUpScore += 1
-                    viewModel.changeCard(card: card)
+                    viewModel.updateScore(card: card, offset: offsetCard)
                     print(card)
                    
                 } else  {

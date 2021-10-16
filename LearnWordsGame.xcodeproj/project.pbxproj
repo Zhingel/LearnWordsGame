@@ -70,6 +70,7 @@
 				EE6F6743270C441400F02BE0 /* ViewModel.swift */,
 				EE6F674B270C5B1700F02BE0 /* Views */,
 				EE6F6735270C41D100F02BE0 /* Assets.xcassets */,
+				EE6F6738270C41D100F02BE0 /* Preview Assets.xcassets */,
 				EE6F6737270C41D100F02BE0 /* Preview Content */,
 			);
 			path = LearnWordsGame;
@@ -78,7 +79,6 @@
 		EE6F6737270C41D100F02BE0 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				EE6F6738270C41D100F02BE0 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
