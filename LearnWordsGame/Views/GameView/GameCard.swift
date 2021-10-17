@@ -20,15 +20,15 @@ struct GameCard: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerSize: CGSize(width: 10, height: 10))
-                .shadow(color: .black, radius: 4, x: 5, y: -5)
+                .shadow(color: .gray, radius: 4, x: 5, y: -5)
 
             ZStack {
                 withAnimation(.linear(duration: 0.3)){
-                    (offsetCard != 0 ? (offsetCard > 0 ? Color.red : Color.green) : Color.gray)
+                    (offsetCard != 0 ? (offsetCard > 0 ? Color("red") : Color("green")) : Color.white)
                 }
                 if textGameStart {
                     withAnimation(.linear(duration: 1)){
-                        (animationTrue ? (wordsIsEqual() ? Color.green : Color.red) : Color.gray)
+                        (animationTrue ? (wordsIsEqual() ? Color("green") : Color("red")) : Color.white)
                     }
                    
                 }
@@ -62,7 +62,8 @@ struct GameCard: View {
                                     }
                                 }
                             }) {
-                                Image(systemName: "chevron.forward.square" )
+                                Image(systemName: "checkmark.rectangle")
+                                    .foregroundColor(.purple)
                             }
                         }
                         .padding(.horizontal, 40)
@@ -77,6 +78,7 @@ struct GameCard: View {
             }
             
         }
+        .foregroundColor(.black)
         .frame(width: 300, height: 250, alignment: .center)
         .font(.title)
         .onTapGesture {

@@ -14,27 +14,36 @@ struct CardView: View {
             RoundedRectangle(cornerRadius: 10)
                 .foregroundColor(.white)
                 .frame(width: 150, height: 150)
-                .shadow(color: .gray, radius: 1, x: 1, y: -1)
+                .shadow(color: .gray, radius: 4, x: 5, y: -5)
             VStack {
                 Text(card.word)
                     .padding(3)
+                    .font(.system(size: 25, weight: .semibold, design: .rounded))
+                    .opacity(0.75)
                 Text(card.translatedWord)
                     .padding(3)
-                Text("\(card.matchUpScore)")
+                    .font(.system(size: 25, weight: .semibold, design: .rounded))
+                    .opacity(0.75)
+            //    Text("\(card.matchUpScore)")
                 switch card.matchUpScore {
                 case ...(-3) :
-                    Text("Bad")
+                    Text("🙈")
+                        .font(.title)
                 case (-2)...0 :
-                    Text("Normal")
+                    Text("⭐️")
+                        .font(.title)
                 case 1...4 :
-                    Text("Nice")
+                    Text("⭐️ ⭐️")
+                        .font(.title)
                 case 5... :
-                    Text("Perfect")
+                    Text("⭐️ ⭐️ ⭐️")
+                        .font(.title)
                 default:
                     Text("good")
                 }
             }
         }
+        .foregroundColor(.black)
     }
 }
 

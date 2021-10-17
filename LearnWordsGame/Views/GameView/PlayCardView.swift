@@ -26,9 +26,12 @@ struct PlayCardView: View {
                         Button (action: {
                             isFaceUpForAll.toggle()
                         }){
-                            Image(systemName: "arrow.triangle.2.circlepath.circle")
+                            Image(systemName: isFaceUpForAll ? "arrow.triangle.2.circlepath.circle.fill" :
+                                    "arrow.triangle.2.circlepath.circle")
                         }
                     }
+                    .foregroundColor(.purple)
+                    .padding(.top, 40)
                 }
                 .font(.largeTitle)
                 .padding([.top,.trailing])
@@ -39,6 +42,11 @@ struct PlayCardView: View {
                         Button("Перемешать") {
                             viewModel.gameStart()
                         }
+                        .foregroundColor(.purple)
+                        .padding()
+                        .background(Color.white)
+                        .clipShape(Capsule())
+                        .shadow(color: .gray, radius: 4, x: 5, y: -5)
                         ForEach(viewModel.cardsGame) { card in
                             GameCard(frame: g.frame(in: .global), card: card, isFaceUpForAll: $isFaceUpForAll, textGameStart: $textGameStart)
                         }
@@ -47,8 +55,9 @@ struct PlayCardView: View {
                 }
                 Spacer()
             }
-            .background(Color.black)
+            .background(Color("backGroundColor"))
         }
+        .edgesIgnoringSafeArea(.top)
     }
    
 }

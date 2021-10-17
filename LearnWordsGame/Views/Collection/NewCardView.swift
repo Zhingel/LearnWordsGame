@@ -18,8 +18,8 @@ struct NewCard : View {
         ZStack {
             RoundedRectangle(cornerRadius: 10)
                 .frame(width: 300, height: 300)
-                .foregroundColor(Color("backGroundColor"))
-                .shadow(color: .black, radius: 4, x: 3, y: -5)
+                .foregroundColor(.white)
+                .shadow(color: .gray, radius: 4, x: 3, y: -5)
             VStack(spacing: 20) {
                 Text(isNewCard ? "Новое слово" : "Изменить")
                     .bold()
@@ -28,6 +28,7 @@ struct NewCard : View {
                 ZStack {
                     TextField("на русском" , text: isNewCard ? $newWord : $card.word)
                         .padding(.horizontal)
+                        .autocapitalization(.none)
                     RoundedRectangle(cornerRadius: 5)
                         .stroke(lineWidth: 1)
                         .opacity(0.5)
@@ -36,6 +37,7 @@ struct NewCard : View {
                 ZStack {
                     TextField("на английском", text: isNewCard ? $newTranslatedWord : $card.translatedWord)
                         .padding(.horizontal)
+                        .autocapitalization(.none)
                     RoundedRectangle(cornerRadius: 5)
                         .stroke(lineWidth: 1)
                         .opacity(0.5)
@@ -43,7 +45,7 @@ struct NewCard : View {
                 .frame(width: 200, height: 40, alignment: .center)
                 Button("Save") {
                     if isNewCard {
-                        viewModel.addCard(word: newWord, translatedWord: newTranslatedWord, matchUpScore: card.matchUpScore)
+                        viewModel.addCard(word: newWord, translatedWord: newTranslatedWord, matchUpScore: 0)
                        // viewModel.gameStart()
                         isNewCard.toggle()
                     }
@@ -73,6 +75,7 @@ struct NewCard : View {
                 }
             }
         }
+        .foregroundColor(.black)
         .frame(width: 325, height: 325)
     }
 }

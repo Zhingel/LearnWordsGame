@@ -22,6 +22,8 @@ struct ContentView: View {
                     Text("Коллекция")
                 }
         }
+        .accentColor(.purple)
+        .foregroundColor(.gray)
     }
 }
 

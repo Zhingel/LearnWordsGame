@@ -13,7 +13,7 @@ struct AllCardCollection: View {
     @State var isChanged = false
     @State var isNewCard = false
     var columns: [GridItem] =
-            Array(repeating: .init(.flexible()), count: 2)
+    Array(repeating: .init(.flexible(), spacing: 0), count: 2)
     var body: some View {
         NavigationView {
             ZStack {
@@ -52,6 +52,7 @@ struct AllCardCollection: View {
                     }
             .navigationTitle("Коллекция карточек")
             .navigationBarTitleDisplayMode(.inline)
+            .foregroundColor(.purple)
             .background(Color("backGroundColor"))
         }
     }
