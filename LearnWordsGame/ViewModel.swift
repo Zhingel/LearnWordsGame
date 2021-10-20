@@ -34,13 +34,10 @@ class ViewModel: ObservableObject {
     func gameStart() {
         mistakesCards = mistakesArray()
         let game = (mistakesCards + cards.filter{$0.matchUpScore < 5} + goodArray())
-        
         self.cardsGame = game.shuffled()
         print(cards)
-        print(game)
-        
-     
     }
+   
     func addCard(word: String, translatedWord: String, matchUpScore: Int) {
         cards.append(Card(word: word, translatedWord: translatedWord, matchUpScore: matchUpScore))
         
@@ -94,7 +91,7 @@ class ViewModel: ObservableObject {
     func goodArray() -> [Card] {
         let goodWords = cards.shuffled().filter {$0.matchUpScore > 4}
         guard goodWords.count != 0 else {return []}
-        let randomElements = goodWords.count > 0 ? goodWords.count/2 : 1
+        let randomElements = goodWords.count > 1 ? goodWords.count/2 : 1
         let newArray = Array(goodWords.prefix(randomElements))
         return newArray
     }

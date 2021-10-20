@@ -66,9 +66,9 @@ struct NewCard : View {
                             isChanged.toggle()
                         //    viewModel.gameStart()
                         }) {
-                            Image(systemName: "minus.circle.fill")
-                                .font(.title)
-                                .foregroundColor(.red)
+                            Image("cancel")
+                                .resizable()
+                                .frame(width: 32.0, height: 32.0)
                         }
                     }
                     Spacer()
